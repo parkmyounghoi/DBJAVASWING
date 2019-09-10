@@ -14,10 +14,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class MainForm extends JFrame {
 	private JTable table;
-	
+
 	Vector<String> vec = new Vector<>();
 
-	DefaultTableModel dtModel = new DefaultTableModel(0,vec.size());
+	DefaultTableModel dtModel = new DefaultTableModel(0, vec.size());
 
 	public MainForm() {
 		setTitle("MainForm");
@@ -40,15 +40,15 @@ public class MainForm extends JFrame {
 		btnNewButton.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 17));
 		btnNewButton.setBounds(300, 127, 159, 51);
 		panel.add(btnNewButton);
-		
+
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				dtModel.addRow(new Object[] {"111","222","333"});
+				dtModel.addRow(new Object[] { "111", "222", "333" });
 				dtModel.fireTableDataChanged();
 			}
 		});
-		
+
 		vec.addElement("TEST");
 		vec.addElement("TEST");
 		vec.addElement("TEST");
@@ -59,7 +59,7 @@ public class MainForm extends JFrame {
 		table.setModel(dtModel);
 		table.setRowHeight(40);
 		table.setBounds(22, 10, 252, 149);
-		
+
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(22, 10, 256, 153);
 
