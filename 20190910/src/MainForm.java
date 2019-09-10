@@ -1,18 +1,23 @@
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 public class MainForm extends JFrame {
 	private JTable table;
+	
+	Vector<String> vec = new Vector<>();
+
+	DefaultTableModel dtModel = new DefaultTableModel(0,vec.size());
 
 	public MainForm() {
 		setTitle("MainForm");
@@ -35,21 +40,28 @@ public class MainForm extends JFrame {
 		btnNewButton.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 17));
 		btnNewButton.setBounds(300, 127, 159, 51);
 		panel.add(btnNewButton);
-		Vector<String> vec = new Vector<>();
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dtModel.addRow(new Object[] {"111","222","333"});
+				dtModel.fireTableDataChanged();
+			}
+		});
+		
 		vec.addElement("TEST");
 		vec.addElement("TEST");
 		vec.addElement("TEST");
 
-		DefaultTableModel dtModel = new DefaultTableModel(0, 0);
-		dtModel.addRow(new Object[] { "111", "222", "333" });
+		dtModel.setColumnIdentifiers(vec);
 
+		table = new JTable(dtModel);
 		table.setModel(dtModel);
 		table.setRowHeight(40);
 		table.setBounds(22, 10, 252, 149);
 		
-		ScrollPane sp = new ScrollPane();
+		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(22, 10, 256, 153);
-		sp.add(table);
 
 		panel.add(sp);
 
