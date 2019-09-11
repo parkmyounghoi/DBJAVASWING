@@ -47,7 +47,7 @@ public class LoginForm extends JFrame implements ActionListener{
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","hr","1234");
-				pstmt = conn.prepareStatement("select * from member1 where id=? and pw=?");
+				pstmt = conn.prepareStatement("select * from member where id=? and pw=?");
 				pstmt.setString(1, textField.getText());
 				pstmt.setString(2, textField_1.getText());
 				rs = pstmt.executeQuery();
